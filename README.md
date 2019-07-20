@@ -2,4 +2,3 @@
 
 Dart wrapper for cloudinary apis.
 
-## Getting Started
