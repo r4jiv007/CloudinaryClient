@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class BaseApi {
   final Dio _dio = Dio();
 
-  String API_BASE_URL = "https://api.cloudinary.com/v1_1";
+  String API_BASE_URL = "https://api.cloudinary.com/v1_1/";
 
   BaseApi();
 
