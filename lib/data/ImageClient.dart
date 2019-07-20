@@ -58,17 +58,16 @@ class ImageClient extends BaseApi {
   }
 
   String getSignature(String folder, String publicId, int timeStamp) {
-    // ignore: avoid_init_to_null
-    String toSign = " ";
+    var buffer = new StringBuffer();
     if (folder != null) {
-      toSign = toSign + "folder=" + folder + "&";
+      buffer.write("folder=" + folder + "&");
     }
     if (publicId != null) {
-      toSign = toSign + "public_id=" + publicId + "&";
+      buffer.write("public_id=" + publicId + "&");
     }
-    toSign = toSign + "timestamp=" + timeStamp.toString() + _apiSecret;
+    buffer.write("timestamp=" + timeStamp.toString() + _apiSecret);
 
-    var bytes = utf8.encode(toSign.trim()); // data being hashed
+    var bytes = utf8.encode(buffer.toString().trim()); // data being hashed
 
     return sha1.convert(bytes).toString();
   }

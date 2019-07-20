@@ -5,4 +5,5 @@
                     Receiver: null
                     Tried calling: +("public_id=")"
 ## [0.0.4] - fix to handle public id correctly
+## [0.0.5] - using StringBuffer to create signature
 
