@@ -59,7 +59,7 @@ class ImageClient extends BaseApi {
 
   String getSignature(String folder, String publicId, int timeStamp) {
     // ignore: avoid_init_to_null
-    String toSign = null;
+    String toSign="";
     if (folder != null) {
       toSign = toSign + "folder=" + folder + "&";
     }
