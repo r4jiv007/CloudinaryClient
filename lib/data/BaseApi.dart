@@ -10,7 +10,9 @@ class BaseApi {
   Future<Dio> getApiClient({InterceptorsWrapper interceptor}) async {
     _dio.options.baseUrl = API_BASE_URL;
     _dio.interceptors.clear();
-    _dio.interceptors.add(interceptor);
+    if (interceptor != null) {
+      _dio.interceptors.add(interceptor);
+    }
     return _dio;
   }
 
@@ -32,4 +34,3 @@ class BaseApi {
       return await dio.post(url);
   }
 }
-
