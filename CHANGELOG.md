@@ -4,4 +4,5 @@
 ## [0.0.3] - fixed "NoSuchMethodError: The method '+' was called on null.
                     Receiver: null
                     Tried calling: +("public_id=")"
+## [0.0.4] - fix to handle public id correctly
 

@@ -20,22 +20,22 @@ class ImageClient extends BaseApi {
       {String filename, String folder}) async {
     int timeStamp = new DateTime.now().millisecondsSinceEpoch;
 
-    String publicId = imagePath.split('/').last;
-
-    if (filename != null) {
-      publicId = filename + "_" + timeStamp.toString();
+    Map<String, dynamic> params = new Map();
+    if (_apiSecret == null || _apiKey == null) {
+      throw Exception("apiKey and apiSecret must not be null");
     }
 
-    Map<String, dynamic> params = new Map();
+    params["api_key"] = _apiKey;
 
     if (imagePath == null) {
       throw Exception("imagePath must not be null");
     }
+    String publicId = imagePath.split('/').last;
+    publicId = publicId.split('.')[0];
 
-    if (_apiSecret == null || _apiKey == null) {
-      throw Exception("apiKey and apiSecret must not be null");
+    if (filename != null) {
+      publicId = filename.split('.')[0] + "_" + timeStamp.toString();
     }
-    params["api_key"] = _apiKey;
 
     if (folder != null) {
       params["folder"] = folder;
@@ -59,7 +59,7 @@ class ImageClient extends BaseApi {
 
   String getSignature(String folder, String publicId, int timeStamp) {
     // ignore: avoid_init_to_null
-    String toSign="";
+    String toSign = " ";
     if (folder != null) {
       toSign = toSign + "folder=" + folder + "&";
     }
@@ -68,7 +68,7 @@ class ImageClient extends BaseApi {
     }
     toSign = toSign + "timestamp=" + timeStamp.toString() + _apiSecret;
 
-    var bytes = utf8.encode(toSign); // data being hashed
+    var bytes = utf8.encode(toSign.trim()); // data being hashed
 
     return sha1.convert(bytes).toString();
   }
