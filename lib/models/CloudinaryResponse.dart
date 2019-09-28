@@ -1,6 +1,6 @@
 class CloudinaryResponse {
   String public_id;
-  String version;
+  int version;
   int width;
   int height;
   String format;

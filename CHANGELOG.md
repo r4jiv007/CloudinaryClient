@@ -8,4 +8,5 @@
 ## [0.0.5] - using StringBuffer to create signature
 ## [0.0.6] - added path separator in base url
 ## [0.0.7] - added cloudinary response model, added method to upload multiple images (using loop, will be updated using cloudinary api support)
+## [0.0.8] - fixed parsing error for cloudinary response
 
