@@ -3,7 +3,7 @@ description: >
   dart wrapper for cloudinary image apis. Right now only supports image upload.
   Will be extended to support other media type as well.
 
-version: 0.0.6
+version: 0.0.7
 author: Rajiv Singh <r4jiv008@gmail.com>
 homepage: https://github.com/r4jiv007/CloudinaryClient
 
@@ -12,7 +12,7 @@ environment:
 
 dependencies:
   # http library
-  dio: 3.0.2
+  dio: ^3.0.2
 
   #crypto
   crypto: ^2.0.6
