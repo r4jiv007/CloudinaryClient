@@ -28,10 +28,11 @@ class CloudinaryClient {
       {String filename, String folder}) async {
     List<CloudinaryResponse> responses = List();
 
-    imagePaths.forEach((path) async {
-      responses.add(await _client.uploadImage(path,
-          imageFilename: filename, folder: folder));
-    });
+    for (var path in imagePaths) {
+      CloudinaryResponse resp = await _client.uploadImage(path,
+          imageFilename: filename, folder: folder);
+      responses.add(resp);
+    }
     return responses;
   }
 
@@ -39,11 +40,11 @@ class CloudinaryClient {
       {String filename, String folder}) async {
     List<String> responses = List();
 
-    imagePaths.forEach((path) async {
+    for (var path in imagePaths) {
       CloudinaryResponse resp = await _client.uploadImage(path,
           imageFilename: filename, folder: folder);
       responses.add(resp.url);
-    });
+    }
     return responses;
   }
 }
