@@ -1,10 +1,9 @@
 library cloudinary_imageClient;
 
-import 'package:cloudinary_client/data/VideoClient.dart';
-import 'package:cloudinary_client/models/CloudinaryResponse.dart';
-import 'package:dio/dio.dart';
-
 import 'data/ImageClient.dart';
+import 'data/VideoClient.dart';
+import 'models/CloudinaryResponse.dart';
+import 'models/CloudinaryResponse.dart';
 
 class CloudinaryClient {
   String _apiKey;
@@ -29,13 +28,11 @@ class CloudinaryClient {
 
   Future<List<CloudinaryResponse>> uploadImages(List<String> imagePaths,
       {String filename, String folder}) async {
-    List<CloudinaryResponse> responses = List();
+    List<CloudinaryResponse> responses = await Future.wait(imagePaths.map(
+            (imagePath) async =>
+                await _imageClient.uploadImage(imagePath, folder: folder)))
+        .catchError((err) => throw (err));
 
-    for (var path in imagePaths) {
-      CloudinaryResponse resp = await _imageClient.uploadImage(path,
-          imageFilename: filename, folder: folder);
-      responses.add(resp);
-    }
     return responses;
   }
 
