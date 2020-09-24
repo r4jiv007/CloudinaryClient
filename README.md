@@ -18,6 +18,13 @@ CloudinaryClient client = new CloudinaryClient(<API_KEY, <API_SECRET>, <cloud_na
   // response object will contain image url.
   
 ```
+## Single Video upload
+```
+ 
+  CloudinaryResponse response = await client.uploadVideo(<path>,filename:<optional>, folder:<optional>);
+  // response object will contain image url.
+  
+```
 
 
 ## multiple image upload
