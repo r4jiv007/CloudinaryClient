@@ -9,30 +9,32 @@ Dart wrapper for cloudinary apis.
 CloudinaryClient client = new CloudinaryClient(<API_KEY, <API_SECRET>, <cloud_name>);
 ```
 
-## uploading images
+## Uploading images
 
-## Single Image upload
+### Single Image upload
 ```
  
   CloudinaryResponse response = await client.uploadImage(<path>,filename:<optional>, folder:<optional>);
   // response object will contain image url.
   
 ```
-## Single Video upload
-```
- 
-  CloudinaryResponse response = await client.uploadVideo(<path>,filename:<optional>, folder:<optional>);
-  // response object will contain image url.
-  
-```
 
 
-## multiple image upload
+### Multiple image upload
 ```
 _path = await FilePicker.getFilePath(type: _pickingType, fileExtension: _extension);
 
 List<String> result = await client.uploadImagesStringResp([_path]);
 // will return list of url of images uploaded
+```
+
+##  Uploading video
+###  Single Video upload
+```
+ 
+  CloudinaryResponse response = await client.uploadVideo(<path>,filename:<optional>, folder:<optional>);
+  // response object will contain image url.
+  
 ```
 
 ## with cloudinary standard response 
