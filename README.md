@@ -33,7 +33,7 @@ List<String> result = await client.uploadImagesStringResp([_path]);
 ```
  
   CloudinaryResponse response = await client.uploadVideo(<path>,filename:<optional>, folder:<optional>);
-  // response object will contain image url.
+  // response object will contain video url.
   
 ```
 
