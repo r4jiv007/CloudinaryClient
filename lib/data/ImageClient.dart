@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:cloudinary_client/models/CloudinaryResponse.dart';
 import 'package:dio/dio.dart';

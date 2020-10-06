@@ -3,7 +3,6 @@ library cloudinary_imageClient;
 import 'data/ImageClient.dart';
 import 'data/VideoClient.dart';
 import 'models/CloudinaryResponse.dart';
-import 'models/CloudinaryResponse.dart';
 
 class CloudinaryClient {
   String _apiKey;
