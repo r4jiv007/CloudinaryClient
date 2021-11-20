@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 import 'package:cloudinary_client/models/CloudinaryResponse.dart';
-import 'package:dio/dio.dart';
 import 'package:crypto/crypto.dart';
+import 'package:dio/dio.dart';
 import 'BaseApi.dart';
 
 class ImageClient extends BaseApi {
-  String _cloudName;
-  String _apiKey;
-  String _apiSecret;
+  late String _cloudName;
+  late String _apiKey;
+  late String _apiSecret;
 
   ImageClient(String apiKey, String apiSecret, String cloudName) {
     this._apiKey = apiKey;
@@ -17,19 +17,13 @@ class ImageClient extends BaseApi {
   }
 
   Future<CloudinaryResponse> uploadImage(String imagePath,
-      {String imageFilename, String folder}) async {
+      {String? imageFilename, String? folder}) async {
     int timeStamp = new DateTime.now().millisecondsSinceEpoch;
 
     Map<String, dynamic> params = new Map();
-    if (_apiSecret == null || _apiKey == null) {
-      throw Exception("apiKey and apiSecret must not be null");
-    }
 
     params["api_key"] = _apiKey;
 
-    if (imagePath == null) {
-      throw Exception("imagePath must not be null");
-    }
     String publicId = imagePath.split('/').last;
     publicId = publicId.split('.')[0];
 
@@ -43,14 +37,12 @@ class ImageClient extends BaseApi {
       params["folder"] = folder;
     }
 
-    if (publicId != null) {
-      params["public_id"] = publicId;
-    }
+    params["public_id"] = publicId;
 
     params["file"] =
         await MultipartFile.fromFile(imagePath, filename: imageFilename);
     params["timestamp"] = timeStamp;
-    params["signature"] = getSignature(folder, publicId, timeStamp);
+    params["signature"] = getSignature(folder!, publicId, timeStamp);
 
     FormData formData = new FormData.fromMap(params);
 
@@ -67,12 +59,11 @@ class ImageClient extends BaseApi {
 
   String getSignature(String folder, String publicId, int timeStamp) {
     var buffer = new StringBuffer();
-    if (folder != null) {
-      buffer.write("folder=" + folder + "&");
-    }
-    if (publicId != null) {
-      buffer.write("public_id=" + publicId + "&");
-    }
+
+    buffer.write("folder=" + folder + "&");
+
+    buffer.write("public_id=" + publicId + "&");
+
     buffer.write("timestamp=" + timeStamp.toString() + _apiSecret);
 
     var bytes = utf8.encode(buffer.toString().trim()); // data being hashed

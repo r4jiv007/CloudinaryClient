@@ -7,7 +7,7 @@ class BaseApi {
 
   BaseApi();
 
-  Future<Dio> getApiClient({InterceptorsWrapper interceptor}) async {
+  Future<Dio> getApiClient({InterceptorsWrapper? interceptor}) async {
     _dio.options.baseUrl = API_BASE_URL;
     _dio.interceptors.clear();
     if (interceptor != null) {
@@ -17,7 +17,7 @@ class BaseApi {
   }
 
   Future<Response<T>> httpGet<T>(String url,
-      {Map<String, dynamic> params}) async {
+      {Map<String, dynamic>? params}) async {
     Dio dio = await getApiClient();
     if (params != null)
       return await dio.get(url, queryParameters: params);
@@ -26,7 +26,7 @@ class BaseApi {
   }
 
   Future<Response<T>> httpPost<T>(
-      String url, Map<String, dynamic> params) async {
+      String url, Map<String, dynamic>? params) async {
     Dio dio = await getApiClient();
     if (params != null)
       return await dio.post(url, data: params);
