@@ -1,20 +1,20 @@
 class CloudinaryResponse {
-  String public_id;
-  int version;
-  int width;
-  int height;
-  String format;
-  String created_at;
-  String resource_type;
-  List<Object> tags;
-  int bytes;
-  String type;
-  String etag;
-  String url;
-  String secure_url;
-  String signature;
-  String original_filename;
-  String error;
+  String? public_id;
+  int? version;
+  int? width;
+  int? height;
+  String? format;
+  String? created_at;
+  String? resource_type;
+  List<Object?>? tags;
+  int? bytes;
+  String? type;
+  String? etag;
+  String? url;
+  String? secure_url;
+  String? signature;
+  String? original_filename;
+  String? error;
 
   CloudinaryResponse.fromJsonMap(Map<String, dynamic> map)
       : public_id = map["public_id"],
